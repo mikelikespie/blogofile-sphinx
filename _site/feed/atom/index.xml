@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+   >
+  <title type="text">Lolrus.org</title>
+  <subtitle type="text">Thoughts and Rants by Mike R. Lewis</subtitle>
+
+  <updated>2009-09-21T18:00:02Z</updated>
+  <generator uri="http://blogofile.com/">Blogofile</generator>
+
+  <link rel="alternate" type="text/html" href="http://www.yoursite.com" />
+  <id>http://www.yoursite.com/feed/atom/</id>
+  <link rel="self" type="application/atom+xml" href="http://www.yoursite.com/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://www.yoursite.com</uri>
+    </author>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link rel="alternate" type="text/html" href="http://www.yoursite.com/posts/2009/09/21/hello-world" />
+    <id>http://www.yoursite.com/posts/2009/09/21/hello-world</id>
+    <updated>2009-09-21T10:05:17Z</updated>
+    <published>2009-09-21T10:05:17Z</published>
+    <category scheme="http://www.yoursite.com" term="Software" />
+    <summary type="html"><![CDATA[Hello World]]></summary>
+    <content type="html" xml:base="http://www.yoursite.com/posts/2009/09/21/hello-world"><![CDATA[
+<p>Hi, this is my first post. I decided to start a project about a week ago to
+write my own blogging software that used some of my favorite technologies
+including <a class="reference external" href="http://makotemplates.org">Mako</a>, Git, and rST/<a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>. A colleague of mine pointed me to <a class="reference external" href="http://www.blogofile.com/">Blogofile</a> which had most of what I wanted aside from the
+rST/Sphinx integration.</p>
+<p>Hacked on it a bit over my vacation this weekend and finally have something
+working.  It&#8217;s certainly not ready for the mainstream yet. The following things
+will require work:</p>
+<div class="section" id="current-issues">
+<h1>Current Issues<a class="headerlink" href="#current-issues" title="Permalink to this headline">&#182;</a></h1>
+<ul>
+<li><p class="first">Headings/Sections. No matter what I do, they convert into <tt class="docutils literal"><span class="pre">&lt;h1/&gt;</span></tt> tags if I
+only have on heading on a page</p>
+</li>
+<li><p class="first">Cross-referencing posts properly</p>
+</li>
+<li><p class="first">Image inclusions</p>
+</li>
+<li><p class="first">Ability to use <tt class="docutils literal"><span class="pre">:date:</span></tt> metadata tag instead of <tt class="docutils literal"><span class="pre">:post_date:</span></tt> (need to
+look into this)</p>
+</li>
+<li><p class="first">Getting rid of some spninx artifacts like the TOC, and the index file which
+aren&#8217;t being used</p>
+</li>
+<li><p class="first">Would like to define the table such as</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">Hello World</span>
+<span class="gh">===========</span>
+</pre></div>
+</div>
+<p>Instead of <tt class="docutils literal"><span class="pre">:title:</span> <span class="pre">Hello</span> <span class="pre">World</span></tt></p>
+</li>
+<li><p class="first">A tighter integration with Blogofile</p>
+</li>
+</ul>
+<p>I believe the latter will require a custom Sphinx builder. That will probably
+fix most of the other problems too, but seems rather intensive right now.</p>
+</div>
+<div class="section" id="methodology">
+<h1>Methodology<a class="headerlink" href="#methodology" title="Permalink to this headline">&#182;</a></h1>
+<p>Currently, I am building with the <tt class="docutils literal"><span class="pre">JSONHTMLBuilder()</span></tt> by calling the
+<tt class="docutils literal"><span class="pre">Sphinx()</span></tt> class directly.</p>
+<p>I then take the <tt class="docutils literal"><span class="pre">.fjson</span></tt> files and output them into <tt class="docutils literal"><span class="pre">.html</span></tt> format for
+Blogofile, prepending the metadata as the standard <tt class="docutils literal"><span class="pre">YAML</span></tt>.</p>
+</div>
+<div class="section" id="plans">
+<h1>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">&#182;</a></h1>
+<p>Well, I am on a flight right now, and have to go straight to work, but when I
+get home I suppose I will post a git repo of what I have so far as a proof of
+concept.</p>
+<p>I&#8217;d also like to convert my current wordpress blog to blogofile ASAP and put
+this on the internet.</p>
+</div>
+<div class="section" id="the-sphinx-advantage">
+<h1>The Sphinx Advantage<a class="headerlink" href="#the-sphinx-advantage" title="Permalink to this headline">&#182;</a></h1>
+<p>Some of you who are familiar with Blogofile might be wondering why I&#8217;m going
+through the effort of adding yet another wiki markup format to Blogofile when
+there&#8217;s already Markup and Textile (I believe).</p>
+<ul class="simple">
+<li>I like Sphinx and am familiar with it</li>
+<li>It will work great for doing technical writeups.<ul>
+<li>Love the pygments integration (I know Blogofile has it)</li>
+<li>Cross-referencing other projects documented in Sphinx</li>
+<li>Including source files in postings instead of cutting &amp; pasting snippets.</li>
+</ul>
+</li>
+<li>Footnotes</li>
+<li>Easily extensible with custom directives</li>
+</ul>
+<p>Before I start evangelizing it more, I will eat my own dogfood <tt class="docutils literal"><span class="pre">;)</span></tt>.</p>
+<p>Here&#8217;s what some of this file looks like:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="nc">:title:</span>         <span class="nf">Hello World</span>
+<span class="nc">:post_date:</span>     <span class="nf">2009/09/21 10:05:17</span>
+<span class="nc">:tags:</span>          <span class="nf">blogofile</span>
+<span class="nc">:categories:</span>    <span class="nf">Software</span>
+<span class="nc">:author:</span>        <span class="nf">Mike Lewis</span>
+
+<span class="cp">....</span>
+
+<span class="gh">The Sphinx Advantage</span>
+<span class="gh">^^^^^^^^^^^^^^^^^^^^</span>
+Some of you who are familiar with Blogofile might be wondering why I&#39;m going
+through the effort of adding yet another wiki markup format to Blogofile when
+there&#39;s already Markup and Textile (I believe).
+
+<span class="m">*</span> I like Sphinx and am familiar with it
+<span class="m">*</span> It will work great for doing technical writeups.
+
+  <span class="m">*</span> Love the pygments integration (I know Blogofile has it)
+
+<span class="cp">....</span>
+
+Here&#39;s what some of this file looks like<span class="se">::</span>
+
+<span class="s">    :title:         Hello World</span>
+<span class="s">    :post_date:     2009/09/21 10:05:17</span>
+<span class="s">    :tags:          blogofile</span>
+<span class="s">    :categories:    Software</span>
+</pre></div>
+</div>
+<p>Pretty meta, huh?</p>
+</div>
+<div class="section" id="other-plans-for-my-blogofile">
+<h1>Other Plans for my Blogofile<a class="headerlink" href="#other-plans-for-my-blogofile" title="Permalink to this headline">&#182;</a></h1>
+<p>Albeit a ruby project, I am in <em>love</em> with <a class="reference external" href="http://sass-lang.com/">SASS</a>. If
+you&#8217;re not familiar, it&#8217;s pretty much programmable CSS. It almost makes CSS
+tolerable. That&#8217;s a bold claim I know, but try it.</p>
+<p>With <a class="reference external" href="http://github.com/chriseppstein/compass/tree/master">Compass</a>, it&#8217;s
+pretty easy to integrate into most projects. I&#8217;m currently using it in a couple
+Pylons projects (blasphemy, I know).</p>
+<p>It should only be a few minutes to throw it in here, but then I will be forced
+to style it.</p>
+</div>
+
+]]></content>
+  </entry>
+</feed>
